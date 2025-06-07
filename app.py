@@ -38,14 +38,14 @@ def get_nearby_places(lat, lon, radius=800):
 
 # === Use ChatGPT to extract location from prompt ===
 def extract_location_from_prompt(prompt):
-    response = openai.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Extract the city or neighborhood from the prompt and return it plainly."},
             {"role": "user", "content": prompt}
         ]
     )
-    return response.choices[0].message.content.strip()
+    return response.choices[0].message["content"].strip()
 
 # === Dummy scoring logic ===
 def score_row(row):
